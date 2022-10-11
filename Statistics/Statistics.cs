@@ -7,19 +7,25 @@ namespace Statistics
     //User defined return type
     public class Stats
     {
-        double average, max, min;
+        public double average, max, min;
     }
     
     public class StatsComputer
     {
-        double average, max, min;
-        public Stats CalculateStatistics(List<double> numbers) {
+        public double average, max, min;
+        public Stats CalculateStatistics(List<double> numbers) 
+        {
+            Stats stats = new Stats();
             if(numbers.Count == 0)
             {
-                average = NaN;
-                max = NaN;
-                min = NaN;
-                return;
+                average = double.NaN;
+                max = double.NaN;
+                min = double.NaN;
+                
+                stats.average = average;
+                stats.max = max;
+                stats.min = min;
+                return stats;
             }
             
             //average of numbers
@@ -31,7 +37,7 @@ namespace Statistics
             //max of numbers
             max = numbers.Max();
             
-            Stats stats = new Stats();
+            
             stats.average = average;
             stats.max = max;
             stats.min = min;
