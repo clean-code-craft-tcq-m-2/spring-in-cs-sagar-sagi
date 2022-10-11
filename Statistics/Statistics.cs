@@ -4,6 +4,12 @@ using System.Linq;
 
 namespace Statistics
 {
+    //User defined return type
+    public class Stats
+    {
+        double average, max, min;
+    }
+    
     public class StatsComputer
     {
         double average, max, min;
@@ -24,6 +30,12 @@ namespace Statistics
             
             //max of numbers
             max = numbers.Max();
+            
+            Stats stats = new Stats();
+            stats.average = average;
+            stats.max = max;
+            stats.min = min;
+            return stats;
         }
     }
 }
