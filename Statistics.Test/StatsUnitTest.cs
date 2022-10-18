@@ -5,6 +5,52 @@ using Statistics;
 
 namespace Statistics.Test
 {
+    public interface IAlerter
+    {
+        void alert();
+    }
+
+    public class EmailAlert : IAlerter
+    {
+        public bool emailSent;
+        public void alert()
+        {
+            emailSent = true;
+        }
+    }
+
+    public class LEDAlert : IAlerter
+    {
+        public bool ledGlows;
+        public void alert()
+        {
+            ledGlows = true;
+        }
+    }
+
+    public class StatsAlerter
+    {
+        public IAlerter[] alerters;
+        public float maxThreshold;
+        public StatsAlerter(float maxThreshold, IAlerter[] alerters)
+        {
+            this.alerters = alerters;
+            this.maxThreshold = maxThreshold;
+        }
+
+        public void checkAndAlert(List<double> numbers)
+        {
+            double max = numbers.Max();
+            if (max > maxThreshold)
+            {
+                foreach (IAlerter alerter in alerters)
+                {
+                    alerter.alert();
+                }
+            }
+        }
+    }
+    
     public class StatsUnitTest
     {
         [Fact]
